@@ -1,31 +1,14 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
-import { api } from '../services/api';
+import useAuth from './hooks/useAuth'
 
 const AuthContext = createContext({})
 
 function AuthProvider({ children }) {
-  const [authenticated, setAuthenticated] = useState(false);
-
-  async function signIn({ email, password }) {
-    try {
-      const response = await api.post('/auth/login',
-        {
-          email, 
-          password
-        }
-      )
-
-      console.debug(response.data);
-
-      setAuthenticated(true);
-    } catch (err) {
-      console.error(err.message);
-    }
-  }
+  const {loading, signIn, authenticated, singOut} = useAuth();
 
   return (
-    <AuthContext.Provider value={{ signIn, authenticated }}>
+    <AuthContext.Provider value={{ loading, signIn, authenticated, singOut }}>
       {children}
     </AuthContext.Provider>
   )
