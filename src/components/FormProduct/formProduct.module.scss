@@ -4,7 +4,7 @@
   align-items: center;
   justify-content: center;
   height: 90vh;
-  max-width: 60%;
+  width: 80%;
   border: 2px solid #dddddd;
   border-radius: 1rem;
   margin: 0 auto;
@@ -28,9 +28,10 @@
   }
 
   button {
-    width: 2rem;
-    height: 2rem;
-    background: #70fa70;
+    width: 8rem;
+    height: 3rem;
+    background: rgb(68, 196, 247);
+    color: #fff;
     border: 1px solid #ccc;
     border-radius: 0.5rem;
     margin: 0 auto;
@@ -51,16 +52,25 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    margin-bottom: 1rem;
 
     button {
       margin-top: 8rem;
-      height: 60px;
-      width: 120px;
+      height: 4rem;
+      width: 6rem;
       border: 1px solid #ccc;
       background: #dddddd;
       border-radius: 0.5rem;
       margin: 0 auto;
       transition: filter 0.2s;
+    }
+
+    :first-child {
+      background: #46eb46;
+    }
+
+    :last-child {
+      background-color: #fa0707;
     }
   }
 }

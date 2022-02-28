@@ -20,11 +20,11 @@ export default function FormProduct() {
 
     const data = {
       image,
-      ingredients: {
+      ingredients: [{
         cost,
         nameIngredient,
         quantity
-      },
+      }],
       nameProduct,
       price
     }
@@ -41,7 +41,9 @@ export default function FormProduct() {
     return <Redirect to="/products" />
   }
 
-  function handleMoreIngredient() {
+  function handleMoreIngredient(event) {
+    event.preventDefault();
+
     return true; //inserir mais campos input 
   }
 

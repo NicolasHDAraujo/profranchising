@@ -18,7 +18,7 @@ export default function CardProduct() {
 
   return (
     <div>
-      {content ? (
+      {content && (
         <div className={styles.Card}>
           {content.map((product) => (
             <div key={product.id} className={styles.Product}>
@@ -40,7 +40,7 @@ export default function CardProduct() {
                   <span>Quantidade: {ingredient.quantity}</span>
                 </div>
               ))}
-              <div>
+              <div className={styles.DivButton}>
                 <button 
                   type="submit"
                   className={styles.Delete} 
@@ -54,8 +54,6 @@ export default function CardProduct() {
             </div>
           ))}
         </div>
-      ) : (
-        <h1>Não há produtos cadastrados</h1>
       )}
     </div>
   )

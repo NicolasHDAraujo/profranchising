@@ -12,9 +12,9 @@ function ProductProvider({ children }) {
   useEffect(() => {
     async function getAllProduct() {
       try {
-        const {data} = await api.get(
+        const { data } = await api.get(
           `/product/list?page=${page}&size=${size}`)
-  
+
         return setAllProducts(data)
       } catch (err) {
         console.log(err);
@@ -23,14 +23,35 @@ function ProductProvider({ children }) {
 
     getAllProduct()
   }, [page, size])
-  
+
   async function createProduct(data) {
+    const {
+      image,
+      id,
+      ingredients: [{
+        cost,
+        nameIngredient,
+        quantity
+      }],
+      nameProduct,
+      price
+    } = data
+
     try {
       const response = await api.post('/product/save', {
-        ...data
+        image,
+        id,
+      ingredients: [{
+        cost,
+        id,
+        nameIngredient,
+        quantity
+      }],
+      nameProduct,
+      price
       })
-      
-      console.log(response)
+
+      console.log(data)
     } catch (err) {
       console.log(err);
     }
@@ -39,7 +60,6 @@ function ProductProvider({ children }) {
   async function deleteProduct(id) {
     try {
       await api.delete(`/product/delete/${id}`)
-      history.push(`/products`)
       return;
     } catch (err) {
       console.log(err);
