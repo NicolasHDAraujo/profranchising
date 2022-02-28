@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from 'react';
 import { api } from '../services/api';
+import history from '../routes/history';
 
 const ProductContext = createContext({})
 
@@ -35,8 +36,18 @@ function ProductProvider({ children }) {
     }
   }
 
+  async function deleteProduct(id) {
+    try {
+      await api.delete(`/product/delete/${id}`)
+      history.push(`/products`)
+      return;
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   return (
-    <ProductContext.Provider value={{ createProduct, allProducts, setPage }}>
+    <ProductContext.Provider value={{ createProduct, allProducts, setPage, deleteProduct }}>
       {children}
     </ProductContext.Provider>
   )

@@ -5,8 +5,8 @@
   align-items: flex-start;
   justify-content: flex-start;
   margin: 1rem;
-  gap: 20px;
-  
+  gap: 1rem;
+
   .Product {
     border: 1px solid #dddddd;
     border-radius: 1rem;
@@ -30,6 +30,22 @@
     .Ingredient {
       display: flex;
       flex-direction: column;
+    }
+  }
+
+  div {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+
+    .Delete {
+      background: #fa0707;
+      color: #fff;
+    }
+    
+    .Edit {
+      background: rgb(70, 235, 70);
+      color: #fff;
     }
   }
 }
