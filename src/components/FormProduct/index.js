@@ -48,13 +48,13 @@ export default function FormProduct() {
   return (
     <form className={styles.Card}>
       <h1>Novo Produto</h1>
-      <input type="url" placeholder="imagem" value={image} onChange={e => setImage(e.target.value)} />
-      <input type="text" placeholder="nome" value={nameProduct} onChange={e => setNameProduct(e.target.value)} />
-      <input type="number" placeholder="preço" value={price} onChange={e => setPrice(e.target.value)} />
+      <input type="url" placeholder="Url da imagem" value={image} onChange={e => setImage(e.target.value)} />
+      <input type="text" placeholder="Nome do produto" value={nameProduct} onChange={e => setNameProduct(e.target.value)} />
+      <input type="number" placeholder="Preço do produto" value={price} onChange={e => setPrice(e.target.value)} />
       <h2>Ingredientes</h2>
-      <input type="number" placeholder="custo" value={cost} onChange={e => setCost(e.target.value)} />
-      <input type="text" placeholder="nome" value={nameIngredient} onChange={e => setNameIngredient(e.target.value)} />
-      <input type="number" placeholder="quantidade" value={quantity} onChange={e => setQuantity(e.target.value)} />
+      <input type="number" placeholder="Custo do ingrediente" value={cost} onChange={e => setCost(e.target.value)} />
+      <input type="text" placeholder="Nome do ingrediente" value={nameIngredient} onChange={e => setNameIngredient(e.target.value)} />
+      <input type="number" placeholder="Quantidade do ingrediente" value={quantity} onChange={e => setQuantity(e.target.value)} />
       <button onClick={handleMoreIngredient}>+</button>
       <div>
         <button onClick={handleSubmit}>Salvar</button>
