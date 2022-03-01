@@ -3,7 +3,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 90%;
+  min-height: 80vh;
+  height: 100%;
   width: 40%;
   border: 2px solid #dddddd;
   border-radius: 1rem;
@@ -28,7 +29,7 @@
   }
 
   button {
-    width: 8rem;
+    width: 4rem;
     height: 3rem;
     background: #44c4f7;
     color: #fff;

@@ -17,8 +17,6 @@ export default function FormProduct() {
   const [ingredients, setIngredients] = useState([])
   const [products, setProducts] = useState({})
 
-  let moreIngredients = 1;
-
   function handleSubmit(event) {
     event.preventDefault();
 
