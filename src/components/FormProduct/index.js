@@ -2,6 +2,7 @@ import { useContext, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 
 import { ProductContext } from '../../context/ProductContext';
+import history from '../../routes/history';
 
 import styles from './formProduct.module.scss';
 
@@ -36,18 +37,20 @@ export default function FormProduct() {
     createProduct(dataProduct)
   }
 
-  function handleCancel() {
-    image('');
+  function handleCancel(event) {
+    event.preventDefault()
+
+    setImage('');
     setNameProduct('')
     setPrice('')
     setCost('')
     setNameIngredient('')
     setQuantity('')
-    return <Redirect to="/products" />
+    return history.push('/products') 
   }
 
   return (
-    <form className={styles.Card} onSubmit={handleCreateProduct}>
+    <form className={styles.Card}>
       <h1>Novo Produto</h1>
       <input
         type="text"
@@ -91,8 +94,8 @@ export default function FormProduct() {
       />
       <button>+</button>
       <div className={styles.DivButton}>
-        <button type="submit">Salvar</button>
-        <button onClick={handleCancel}>Cancelar</button>
+        <button onClick={e => handleCreateProduct(e)}>Salvar</button>
+        <button onClick={e => handleCancel(e)}>Cancelar</button>
       </div>
     </form >
   )

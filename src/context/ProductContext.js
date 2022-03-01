@@ -38,15 +38,13 @@ function ProductProvider({ children }) {
     console.log(dataProduct)
 
     try {
-      const response = await api.post('/product/save', {
+      await api.post('/product/save', {
         id,
         image,
         ingredients,
         name,
         price
       })
-
-      console.log(response);
       return history.push('/products')
     } catch (err) {
       console.log(err.message);
