@@ -1,6 +1,5 @@
 import { createContext, useEffect, useState } from 'react';
 import { api } from '../services/api';
-import history from '../routes/history';
 
 const ProductContext = createContext({})
 
