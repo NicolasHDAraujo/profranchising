@@ -10,80 +10,90 @@ export default function FormProduct() {
 
   const [image, setImage] = useState('')
   const [nameProduct, setNameProduct] = useState('')
-  const [price, setPrice] = useState(0)
+  const [price, setPrice] = useState('')
   const [cost, setCost] = useState('')
   const [nameIngredient, setNameIngredient] = useState('')
   const [quantity, setQuantity] = useState('')
-  const [ingredients, setIngredients] = useState([])
-  const [products, setProducts] = useState({})
 
-  function handleSubmit(event) {
+  function handleCreateProduct(event) {
     event.preventDefault();
-
-    setProducts({
-      image,
-      nameProduct,
-      id: 0,
-      price
-    })
-
-    setIngredients([{
+    
+    const ingredients = [{
       cost,
-      nameIngredient,
-      quantity
-    }])
+      id: 0,
+      name: nameIngredient,
+      quantity,
+    }]
 
-    createProduct(products, ingredients)
+    const dataProduct = {
+      id: 0,
+      image,
+      ingredients,
+      name: nameProduct,
+      price,
+    }
+
+    createProduct(dataProduct)
   }
 
   function handleCancel() {
-    setImage('');
+    image('');
     setNameProduct('')
-    setPrice(0)
+    setPrice('')
     setCost('')
     setNameIngredient('')
     setQuantity('')
     return <Redirect to="/products" />
   }
 
-  function handleMoreIngredient(event) {
-    event.preventDefault();
-
-    setIngredients([...ingredients, ""])
-    return true;
-  }
-
   return (
-    <form className={styles.Card}>
+    <form className={styles.Card} onSubmit={handleCreateProduct}>
       <h1>Novo Produto</h1>
-      <input type="text" placeholder="Nome do produto" value={nameProduct} onChange={e => setNameProduct(e.target.value)} />
-      <input type="url" placeholder="Url da imagem do produto" value={image} onChange={e => setImage(e.target.value)} />
-      <input type="number" placeholder="Preço do produto" value={price} onChange={e => setPrice(e.target.value)} />
+      <input
+        type="text"
+        placeholder="Nome do produto"
+        value={nameProduct}
+        onChange={e => setNameProduct(e.target.value)}
+      />
+      <input
+        type="url"
+        placeholder="Url da imagem do produto"
+        value={image}
+        onChange={e => setImage(e.target.value)}
+      />
+      <input
+        type="number"
+        placeholder="Preço do produto"
+        value={price}
+        onChange={e => setPrice(e.target.value)}
+      />
       <h2>Ingredientes</h2>
-      {ingredients.map((ingredient, index) => (
-        <div key={index} className={styles.MoreIngredientForm}>
-          <input
-            type="text"
-            placeholder="Nome do ingrediente"
-            value={nameIngredient}
-            onChange={e => setNameIngredient(e.target.value)} />
-          <input
-            type="number"
-            placeholder="Custo do ingrediente"
-            value={cost}
-            onChange={e => setCost(e.target.value)} />
-          <input
-            type="number"
-            placeholder="Quantidade do ingrediente"
-            value={quantity}
-            onChange={e => setQuantity(e.target.value)} />
-        </div>
-      ))}
-      <button onClick={handleMoreIngredient}>+</button>
+      <input
+        type="text"
+        placeholder="Nome do ingrediente"
+        id="nameIngredient"
+        value={nameIngredient}
+        onChange={e => setNameIngredient(e.target.value)}
+      />
+      <input
+        type="number"
+        placeholder="Custo do ingrediente"
+        id="cost"
+        value={cost}
+        onChange={e => setCost(e.target.value)}
+      />
+      <input
+        type="number"
+        placeholder="Quantidade do ingrediente"
+        id="quantity"
+        value={quantity}
+        onChange={e => setQuantity(e.target.value)}
+      />
+      <button>+</button>
       <div className={styles.DivButton}>
-        <button onClick={handleSubmit}>Salvar</button>
+        <button type="submit">Salvar</button>
         <button onClick={handleCancel}>Cancelar</button>
       </div>
-    </form>
+    </form >
   )
 }

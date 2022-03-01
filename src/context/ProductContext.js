@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
+import history from '../routes/history';
 import { api } from '../services/api';
 
 const ProductContext = createContext({})
@@ -24,36 +25,31 @@ function ProductProvider({ children }) {
     getAllProduct()
   }, [page, size])
 
-  async function createProduct(data) {
+  async function createProduct(dataProduct) {
+
     const {
-      image,
       id,
-      ingredients: [{
-        cost,
-        nameIngredient,
-        quantity
-      }],
-      nameProduct,
+      image,
+      ingredients,
+      name,
       price
-    } = data
+    } = dataProduct;
+
+    console.log(dataProduct)
 
     try {
       const response = await api.post('/product/save', {
-        image,
         id,
-        ingredients: [{
-          cost,
-          id,
-          nameIngredient,
-          quantity
-        }],
-        nameProduct,
+        image,
+        ingredients,
+        name,
         price
       })
 
-      console.log(data)
+      console.log(response);
+      return history.push('/products')
     } catch (err) {
-      console.log(err);
+      console.log(err.message);
     }
   }
 
