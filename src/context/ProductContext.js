@@ -62,6 +62,12 @@ function ProductProvider({ children }) {
     }
   }
 
+  async function editProduct(id) {
+    api.get('/products', {
+      
+    })
+  }
+
   return (
     <ProductContext.Provider value={{ createProduct, allProducts, setPage, deleteProduct }}>
       {children}
