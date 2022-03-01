@@ -3,18 +3,18 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 90vh;
-  width: 80%;
+  height: 90%;
+  width: 40%;
   border: 2px solid #dddddd;
   border-radius: 1rem;
   margin: 0 auto;
 
   h1 {
-    margin-bottom: 5rem;
+    margin-bottom: 0.5rem;
   }
 
   input {
-    height: 3rem;
+    height: 2rem;
     width: 90%;
     margin-bottom: 1rem;
     border: 1px solid #dddddd;
@@ -30,7 +30,7 @@
   button {
     width: 8rem;
     height: 3rem;
-    background: rgb(68, 196, 247);
+    background: #44c4f7;
     color: #fff;
     border: 1px solid #ccc;
     border-radius: 0.5rem;
@@ -46,7 +46,7 @@
     filter: brightness(0.5);
   }
 
-  div {
+  .DivButton {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -72,5 +72,44 @@
     :last-child {
       background-color: #fa0707;
     }
+  }
+}
+
+@media(max-width:720px) {
+  .Card {
+    width: 80%;
+
+    button {
+      width: 3rem;
+    }
+
+    div > button {
+      width: 5rem;
+    }
+  }
+
+}
+
+.MoreIngredientForm {
+  margin-top: 0.7rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 auto;
+  width: 100%;
+
+  input {
+    height: 2rem;
+    width: 90%;
+    margin-bottom: 1rem;
+    border: 1px solid #dddddd;
+    border-radius: 5px;
+    transition: filter 0.2s;
+  }
+
+  input:hover {
+    filter: brightness(0.9);
+    cursor: pointer;
   }
 }

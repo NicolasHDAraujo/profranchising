@@ -5,6 +5,8 @@ import { AuthContext } from '../context/AuthContext';
 
 import { Login } from '../pages/Login';
 import { Products } from '../pages/Products';
+import { Page404 } from '../pages/Page404';
+import { Form } from '../pages/Form';
 
 function CustomRoute({ isPrivate, ...rest}) {
   const { authenticated, loading } = useContext(AuthContext);
@@ -26,6 +28,8 @@ export default function Routing() {
     <Switch>
       <CustomRoute exact path="/" component={Login} />
       <CustomRoute isPrivate exact path="/products" component={Products} />
+      <CustomRoute isPrivate exact path="/products/form" component={Form} />
+      <CustomRoute isPrivate path="*" component={Page404} />
     </Switch>
   )
 }

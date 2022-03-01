@@ -1,16 +1,17 @@
 import { ProductProvider } from "../../context/ProductContext";
-import { CardProduct } from "../../components/CardProduct";
 
 import styles from './products.module.scss'
-import Header from "../../components/Header";
 
-export function Products() {
+import Header from "../../components/Header";
+import FormProduct from "../../components/FormProduct";
+
+export function Form() {
 
   return (
     <>
       <Header />
       <ProductProvider>
-        <CardProduct />
+        <FormProduct />
       </ProductProvider>
     </>
   )

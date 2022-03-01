@@ -3,13 +3,13 @@ import { ProductContext } from "../../context/ProductContext"
 
 import styles from './card.module.scss'
 
-export default function CardProduct() {
+export function CardProduct() {
   const { setPage, allProducts, deleteProduct } = useContext(ProductContext);
 
   const { content } = allProducts;
 
   function handleDelete(e, id) {
-    deleteProduct(id)
+    deleteProduct(e,id)
   }
   
   function handleEdit(e, id) {

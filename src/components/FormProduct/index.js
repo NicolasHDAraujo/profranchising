@@ -14,21 +14,28 @@ export default function FormProduct() {
   const [cost, setCost] = useState('')
   const [nameIngredient, setNameIngredient] = useState('')
   const [quantity, setQuantity] = useState('')
+  const [ingredients, setIngredients] = useState([])
+  const [products, setProducts] = useState({})
+
+  let moreIngredients = 1;
 
   function handleSubmit(event) {
     event.preventDefault();
 
-    const data = {
+    setProducts({
       image,
-      ingredients: [{
-        cost,
-        nameIngredient,
-        quantity
-      }],
       nameProduct,
+      id: 0,
       price
-    }
-    createProduct(data)
+    })
+
+    setIngredients([{
+      cost,
+      nameIngredient,
+      quantity
+    }])
+
+    createProduct(products, ingredients)
   }
 
   function handleCancel() {
@@ -44,21 +51,38 @@ export default function FormProduct() {
   function handleMoreIngredient(event) {
     event.preventDefault();
 
-    return true; //inserir mais campos input 
+    setIngredients([...ingredients, ""])
+    return true;
   }
 
   return (
     <form className={styles.Card}>
       <h1>Novo Produto</h1>
-      <input type="url" placeholder="Url da imagem" value={image} onChange={e => setImage(e.target.value)} />
       <input type="text" placeholder="Nome do produto" value={nameProduct} onChange={e => setNameProduct(e.target.value)} />
+      <input type="url" placeholder="Url da imagem do produto" value={image} onChange={e => setImage(e.target.value)} />
       <input type="number" placeholder="Preço do produto" value={price} onChange={e => setPrice(e.target.value)} />
       <h2>Ingredientes</h2>
-      <input type="number" placeholder="Custo do ingrediente" value={cost} onChange={e => setCost(e.target.value)} />
-      <input type="text" placeholder="Nome do ingrediente" value={nameIngredient} onChange={e => setNameIngredient(e.target.value)} />
-      <input type="number" placeholder="Quantidade do ingrediente" value={quantity} onChange={e => setQuantity(e.target.value)} />
+      {ingredients.map((ingredient, index) => (
+        <div key={index} className={styles.MoreIngredientForm}>
+          <input
+            type="text"
+            placeholder="Nome do ingrediente"
+            value={nameIngredient}
+            onChange={e => setNameIngredient(e.target.value)} />
+          <input
+            type="number"
+            placeholder="Custo do ingrediente"
+            value={cost}
+            onChange={e => setCost(e.target.value)} />
+          <input
+            type="number"
+            placeholder="Quantidade do ingrediente"
+            value={quantity}
+            onChange={e => setQuantity(e.target.value)} />
+        </div>
+      ))}
       <button onClick={handleMoreIngredient}>+</button>
-      <div>
+      <div className={styles.DivButton}>
         <button onClick={handleSubmit}>Salvar</button>
         <button onClick={handleCancel}>Cancelar</button>
       </div>

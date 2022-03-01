@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState } from 'react';
+import { Redirect } from 'react-router-dom';
 import { api } from '../services/api';
 
 const ProductContext = createContext({})
@@ -40,14 +41,14 @@ function ProductProvider({ children }) {
       const response = await api.post('/product/save', {
         image,
         id,
-      ingredients: [{
-        cost,
-        id,
-        nameIngredient,
-        quantity
-      }],
-      nameProduct,
-      price
+        ingredients: [{
+          cost,
+          id,
+          nameIngredient,
+          quantity
+        }],
+        nameProduct,
+        price
       })
 
       console.log(data)
@@ -56,10 +57,12 @@ function ProductProvider({ children }) {
     }
   }
 
-  async function deleteProduct(id) {
+  async function deleteProduct(e, id) {
     try {
+      e.persist();
       await api.delete(`/product/delete/${id}`)
-      return;
+      e.target.parentElement.parentElement.remove()
+      return
     } catch (err) {
       console.log(err);
     }
